@@ -29,9 +29,11 @@ trigger:
     attribute: price_level
 action:
   choose:
-  - conditions:
-    "{{ states('sensor.electricity_price_hjemme')|float => state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
+  - conditions: 
+    - condition: template
+      value_template: "{{ states('sensor.electricity_price_hjemme')|float => state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input above_actions
-  - conditions:
-    "{{ states('sensor.electricity_price_hjemme')|float =< state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
+  - conditions: 
+    - condition: template
+      value_template: "{{ states('sensor.electricity_price_hjemme')|float =< state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input below_actions
