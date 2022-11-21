@@ -29,6 +29,37 @@ trigger:
   attribute: price_level
 action:
 - choose:
+  - blueprint:
+  name: Tibber daily average price control
+  description: Performs actions when Tibber price is above or belov daily average
+  domain: automation
+  input:
+    tibber_price_sensor:
+      name: Tibber price sensor
+      selector:
+        entity:
+          domain: sensor
+          multiple: false
+    below_actions:
+      name: Low prices
+      description: Actions to perform when prices are lower than daily average
+      default: []
+      selector:
+        action: {}
+    above_actions:
+      name: High prices
+      description: Actions to perform when prices are higher than daily average
+      default: []
+      selector:
+        action: {}
+mode: restart
+max_exeeded: silent
+trigger:
+- platform: state
+  entity_id: !input tibber_price_sensor
+  attribute: price_level
+action:
+- choose:
   - conditions:
     - "{{ states('sensor.electricity_price_hjemme')|float > state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input above_actions
