@@ -21,6 +21,7 @@ blueprint:
       default: []
       selector:
         action: {}
+  source_url: https://github.com/fayelund/homeassistant/blob/main/tibber_daily_avg_price.yaml
 mode: restart
 max_exeeded: silent
 trigger:
