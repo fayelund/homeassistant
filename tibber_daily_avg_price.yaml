@@ -28,7 +28,7 @@ trigger:
   entity_id: !input tibber_price_sensor
   attribute: price_level
 action:
-- choose:
+  choose:
   - conditions:
     - "{{ states('sensor.electricity_price_hjemme')|float => state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input above_actions
