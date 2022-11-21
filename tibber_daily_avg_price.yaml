@@ -22,7 +22,6 @@ blueprint:
       selector:
         action: {}
 mode: restart
-max_exeeded: silent
 trigger:
 - platform: state
   entity_id: !input tibber_price_sensor
