@@ -24,14 +24,14 @@ blueprint:
 mode: restart
 max_exeeded: silent
 trigger:
-- platform: state
-  entity_id: !input tibber_price_sensor
-  attribute: price_level
+  platform: state
+    entity_id: !input tibber_price_sensor
+    attribute: price_level
 action:
   choose:
   - conditions:
-    - "{{ states('sensor.electricity_price_hjemme')|float => state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
+    "{{ states('sensor.electricity_price_hjemme')|float => state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input above_actions
   - conditions:
-    - "{{ states('sensor.electricity_price_hjemme')|float =< state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
+    "{{ states('sensor.electricity_price_hjemme')|float =< state_attr('sensor.electricity_price_hjemme', 'avg_price') }}"
     sequence: !input below_actions
