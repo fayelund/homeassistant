@@ -1,4 +1,4 @@
-blueprint:
+c_blueprint:
   name: Tibber daily average price control
   description: Performs actions when Tibber price is above or belov daily average
   domain: automation
@@ -22,10 +22,11 @@ blueprint:
       selector:
         action: {}
 mode: restart
-trigger:
+triggers:
 - platform: state
-  entity_id: !input tibber_price_sensor
-  attribute: state,avg_price
+  entity_id: tibber_price_sensor.state
+- platform: state
+  entitt_id: tibber_price_sensor.avg_price
 action:
 - choose:
   - conditions:
