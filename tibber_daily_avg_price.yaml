@@ -25,7 +25,7 @@ mode: restart
 trigger:
 - platform: state
   entity_id: !input tibber_price_sensor
-  attribute: price_level
+  attribute: state,avg_price
 action:
 - choose:
   - conditions:
