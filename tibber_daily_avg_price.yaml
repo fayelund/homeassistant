@@ -24,9 +24,10 @@ c_blueprint:
 mode: restart
 triggers:
 - platform: state
-  entity_id: tibber_price_sensor.state
+  entity_id: !input tibber_price_sensor
 - platform: state
-  entitt_id: tibber_price_sensor.avg_price
+  entitt_id: !input tibber_price_sensor
+  attribute: avg_price
 action:
 - choose:
   - conditions:
